@@ -1,0 +1,13 @@
+{
+  "LoginPage": {
+    "url": "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F",
+    "title": "Your store. Login",
+    "validCredentials": {
+      "email": "admin@yourstore.com",
+      "password": "admin"
+    }
+  },
+  "DashboardPage": {
+    "url": "https://admin-demo.nopcommerce.com/admin/"
+  }
+}
