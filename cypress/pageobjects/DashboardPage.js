@@ -49,7 +49,7 @@ class DashboardPage{
     }
 
     getAllCards(){
-        return cy.get(".card-primary")
+        return cy.get(".card-primary").should('exist')
     }
 
     getAllCollapsedCards(){
