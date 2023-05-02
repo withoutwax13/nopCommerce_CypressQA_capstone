@@ -22,23 +22,23 @@ describe("TS_02: Dashboard Scenario:", ()=>{
 
     it("TC_01: Verify if the content body of all collapsed cards are hidden", ()=>{
         DashboardPageObject.getAllCollapsedCards().each(card=>{
-            DashboardPageObject.findContentBody(card).should('not.have.css', 'display', 'block')
+            cy.ExpectHidden(DashboardPageObject.findContentBody(card))
         })
         
     })
 
     it("TC_02: Verify that when the user clicks on the card header, the expanded card collapses and hides its content.", ()=>{
         DashboardPageObject.getAllExpandedCards().each(card=>{
-            DashboardPageObject.findContentBody(card).should('have.css', 'display', 'block')
-            DashboardPageObject.clickCollapseToggle(card).should('not.have.css', 'display', 'block')
+            cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
+            cy.ExpectHidden(DashboardPageObject.clickCollapseToggle(card))
         })
     })
     
     it("TC_03: Verify that when the user clicks on the card header, the collapsed card expands and shows its content.", ()=>{
         DashboardPageObject.getAllCollapsedCards().each(card=>{
-            DashboardPageObject.findContentBody(card).should('not.have.css', 'display', 'block')
+            cy.ExpectHidden(DashboardPageObject.findContentBody(card))
             DashboardPageObject.clickCollapseToggle(card).then(() => {
-                DashboardPageObject.findContentBody(card).should('have.css', 'display', 'block');
+                cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
               })
         })
     })
@@ -50,9 +50,9 @@ describe("TS_02: Dashboard Scenario:", ()=>{
         ]
         
         DashboardPageObject.getAllExpandedCards().each(card=>{
-            DashboardPageObject.findContentBody(card).should('have.css', 'display', 'block')
+            cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
             nonCardElements[Math.floor(Math.random() * nonCardElements.length)].click()
-            DashboardPageObject.findContentBody(card).should('have.css', 'display', 'block')
+            cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
         })
     })
 
