@@ -37,3 +37,11 @@ Cypress.Commands.add("LoginAndVerify", (_object, credentials, verification)=>{
     _object.clickLoginButton()
     verification()
 })
+
+Cypress.Commands.add('ExpectHidden', (_object)=>{
+    _object.should('not.have.css', 'display', 'block')
+})
+
+Cypress.Commands.add('ExpectNotHidden', (_object)=>{
+    _object.should('have.css', 'display', 'block')
+})
