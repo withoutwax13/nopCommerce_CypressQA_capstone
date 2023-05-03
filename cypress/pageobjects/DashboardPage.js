@@ -38,7 +38,7 @@ class DashboardPage{
     }
 
     _getCollapseButton(locator){
-        return cy.xpath(`//div[contains(@class, 'card-primary') and @id='${locator}']//button[@data-card-widget="collapse"]`)
+        return cy.xpath(`//div[contains(@class, 'card-primary') and @id='${locator}']//button[@data-card-widget="collapse"]//i`)
     }
 
     _wrapCard(id){

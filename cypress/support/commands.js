@@ -38,10 +38,14 @@ Cypress.Commands.add("LoginAndVerify", (_object, credentials, verification)=>{
     verification()
 })
 
+Cypress.Commands.add("Logout", ()=>{
+    cy.xpath("//a[normalize-space()='Logout']").click({force: true})
+})
+
 Cypress.Commands.add('ExpectHidden', (_object)=>{
-    _object.should('not.have.css', 'display', 'block')
+    _object.then((obj)=>cy.wrap(obj).should('not.have.css', 'display', 'block'))
 })
 
 Cypress.Commands.add('ExpectNotHidden', (_object)=>{
-    _object.should('have.css', 'display', 'block')
+    _object.then((obj)=>cy.wrap(obj).should('have.css', 'display', 'block'))
 })

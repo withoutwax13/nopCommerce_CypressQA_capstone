@@ -8,6 +8,17 @@
     }
   },
   "DashboardPage": {
-    "url": "https://admin-demo.nopcommerce.com/admin/"
+    "url": "https://admin-demo.nopcommerce.com/admin/",
+    "pageTitle": "Dashboard"
+  },
+  "SearchCustomer": {
+    "url": "https://admin-demo.nopcommerce.com/Admin/Customer/List",
+    "title": "Customers / nopCommerce administration",
+    "testData": {
+
+    },
+    "customers": [
+      { "email": "admin@yourStore.com", "firstName": "John", "lastName": "Smith" }
+    ]
   }
 }

@@ -30,6 +30,9 @@ describe('TS_01: Login Scenario', () => {
     
     // Call a custom Cypress command 'LoginAndVerify' with the LoginPage object, valid credentials, and a callback to assert that the URL matches the successLoginURL
     cy.LoginAndVerify(LoginPageobject, [adminEmail, adminPassword], ()=>cy.url().should('eq', successLoginURL))
+    
+    // Post-Condition: Logout
+    cy.Logout()
   })
   
   it("TC_02: Verify display of an appropriate error message a login attempt was made incorrect login credentials", ()=>{
