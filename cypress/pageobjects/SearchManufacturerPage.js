@@ -26,6 +26,26 @@ class SearchManufacturerPage{
         }
     }
 
+    get importButton(){
+        return cy.xpath("//button[@name='importexcel']")
+    }
+
+    get importModal(){
+        return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']")
+    }
+
+    get importModalTitle(){
+        return cy.get("#importexcel-window-title")
+    }
+
+    get finalizeImportButton(){
+        return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']//form//button")
+    }
+
+    get importAlert(){
+        return cy.get('.alert')
+    }
+
     visit(){
         cy.xpath("//p[normalize-space()='Catalog']").click()
         cy.xpath("//p[normalize-space()='Manufacturers']").click()
@@ -39,13 +59,23 @@ class SearchManufacturerPage{
     clickSearchButton(){
         return this.searchButton.click()
     }
+
+    clickImportButton(){
+        return this.importButton.click()
+    }
     
     assertDataInField(_EXPECTED_DATA, _FIELD="name"){
         switch(_FIELD){
             case "name":
                 var _refField = this.dataTable.nameData()
                 _refField.invoke('text').then(text=>{
-                    expect(text.toLowerCase()).to.include(_EXPECTED_DATA)
+                    expect(text).to.include(_EXPECTED_DATA)
+                })
+                break
+            case "displayOrder":
+                var _refField = this.dataTable.displayOrderData()
+                _refField.invoke('text').then(text=>{
+                    expect(text).to.include(_EXPECTED_DATA)
                 })
                 break
             default:
@@ -54,7 +84,33 @@ class SearchManufacturerPage{
     }
 
     assertHasResult(){
-        return this.dataTable.nameData().should('have.length', 1)
+        return this.dataTable.nameData().should('have.length.least', 1)
+    }
+
+    assertModalTitleMatch(_EXPECTED_TITLE){
+        this.importModalTitle.invoke('text').then((text)=>{
+            expect(text).to.include(_EXPECTED_TITLE)
+        })
+    }
+
+    uploadSpreadsheet(_FILENAME){
+        cy.fixture(_FILENAME, 'binary').then(Cypress.Blob.binaryStringToBlob)
+        .then(fileContent => {
+            cy.get("input[type='file']").attachFile({ fileContent, fileName: _FILENAME, mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', encoding:'utf8' })
+        })
+        this.finalizeImportButton.click()
+    }
+
+    verifyImportSucess(){
+        this.importAlert.invoke('text').then(text=>{
+            expect(text).to.include("Manufacturers have been imported successfully")
+        })
+    }
+
+    verifyImportFailure(){
+        this.importAlert.invoke('text').then(text=>{
+            expect(text).to.not.include("Manufacturers have been imported successfully")
+        })
     }
 }
 

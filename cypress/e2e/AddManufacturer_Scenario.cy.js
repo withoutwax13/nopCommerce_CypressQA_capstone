@@ -1,9 +1,9 @@
-// SearchManufacturer.cy.js
+// AddManufacturer_Scenario.cy.js
 
 import LoginPage from "../pageobjects/LoginPage"
 import SearchManufacturerPage from "../pageobjects/SearchManufacturerPage"
 
-describe("TS_04: Search Manufacturer Scenario", ()=>{
+describe("TS_05: Add Manufacturer Scenario", ()=>{
 
     var SearchManufacturerObject = new SearchManufacturerPage(),
         testData
@@ -31,8 +31,8 @@ describe("TS_04: Search Manufacturer Scenario", ()=>{
     })
 
     before(()=>{
-        cy.fixture('appData').then((data)=>{
-            testData = data.SearchManufacturer.testData
+        cy.fixture('appData').then(data=>{
+            testData = data.AddManufacturer.testData
         })
     })
 
@@ -40,14 +40,14 @@ describe("TS_04: Search Manufacturer Scenario", ()=>{
         cy.Logout()
     })
 
-    it("TC_01: Verify working Search manufacturer by name feature", ()=>{
-        testData.forEach((data) => {
-            SearchManufacturerObject.visit()
-            SearchManufacturerObject.inputManufacturerName(data.data)
-            SearchManufacturerObject.clickSearchButton()
-            SearchManufacturerObject.assertHasResult()
-            SearchManufacturerObject.assertDataInField(data.data, data.field)
-        });
-        
+    it("TC_01: Verify working adding manufacturer feature through uploading spreadsheet", ()=>{
+        SearchManufacturerObject.visit()
+        SearchManufacturerObject.clickImportButton()
+        SearchManufacturerObject.assertModalTitleMatch("Import from Excel")
+        SearchManufacturerObject.uploadSpreadsheet("manufacturers.xlsx")
+        SearchManufacturerObject.verifyImportSucess()
+        testData.forEach((data)=>{
+            SearchManufacturerObject.assertDataInField(data.name, "name")
+        })
     })
 })

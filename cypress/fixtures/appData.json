@@ -20,5 +20,19 @@
     "customers": [
       { "email": "admin@yourStore.com", "firstName": "John", "lastName": "Smith" }
     ]
+  },
+  "SearchManufacturer": {
+    "url": "https://admin-demo.nopcommerce.com/Admin/Manufacturer/List",
+    "title": "",
+    "testData": [
+      {"field": "name", "data": "Apple"}
+    ]
+  },
+  "AddManufacturer": {
+    "testData": [
+      {"name": "Nissan", "displayOrder": 1},
+      {"name": "LV", "displayOrder": 5},
+      {"name": "Dior", "displayOrder": 5}
+    ]
   }
 }

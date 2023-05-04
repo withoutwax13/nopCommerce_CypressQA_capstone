@@ -23,6 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-file-upload'
 
 /// <reference types="cypress"/>
 /// <reference types="cypress-xpath"/>
@@ -48,4 +49,8 @@ Cypress.Commands.add('ExpectHidden', (_object)=>{
 
 Cypress.Commands.add('ExpectNotHidden', (_object)=>{
     _object.then((obj)=>cy.wrap(obj).should('have.css', 'display', 'block'))
+})
+
+Cypress.Commands.add("ReadExcelFile", (__filename)=>{
+    //
 })

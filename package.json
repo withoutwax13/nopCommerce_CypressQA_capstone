@@ -13,6 +13,8 @@
     "cypress": "^12.11.0"
   },
   "devDependencies": {
-    "cypress-xpath": "^2.0.1"
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^2.0.1",
+    "node-xlsx": "^0.21.2"
   }
 }
