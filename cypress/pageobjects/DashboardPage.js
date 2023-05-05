@@ -9,16 +9,8 @@ class DashboardPage{
 
     // getters
 
-    get contentHeader(){
-        return cy.get("div[class='content-header'] h1")
-    }
-
-    get footer(){
-        return cy.get(".main-footer")
-    }
-
-    // get specific dashboard cards
-
+    get contentHeader(){ return cy.get("div[class='content-header'] h1") }
+    get footer(){ return cy.get(".main-footer") }
     get configStepsCard(){return this._wrapCard('configuration-steps-card')}
     get newsBoxCard(){return this._wrapCard('nopcommerce-news-box')}
     get commonStatsCard(){return this._wrapCard('nopcommerce-common-statistics-card')}

@@ -34,5 +34,41 @@
       {"name": "LV", "displayOrder": 5},
       {"name": "Dior", "displayOrder": 5}
     ]
+  },
+  "ListBlogPostsPage": {
+    "url": "https://admin-demo.nopcommerce.com/Admin/Blog/BlogPosts"
+  },
+  "AddBlogPostPage": {
+    "url": "https://admin-demo.nopcommerce.com/Admin/Blog/BlogPostCreate",
+    "testData": [
+      {
+        "title": "This is a title 1",
+        "body": "This is a sample body 1",
+        "tag": ["testTag1", "testTag2", "testTag3"],
+        "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "endDate": { "mm": 5, "dd": 9, "yyyy": 2023 }
+      },
+      {
+        "title": "This is a title 2",
+        "body": "This is a sample body 2",
+        "tag": ["testTag1", "testTag2", "testTag3"],
+        "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "endDate": { "mm": 5, "dd": 10, "yyyy": 2023 }
+      },
+      {
+        "title": "This is a title 3",
+        "body": "This is a sample body 4",
+        "tag": ["testTag1", "testTag2"],
+        "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "endDate": { "mm": 5, "dd": 11, "yyyy": 2023 }
+      },
+      {
+        "title": "This is a title 5",
+        "body": "This is a sample body 5",
+        "tag": ["testTag2", "testTag3"],
+        "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "endDate": { "mm": 5, "dd": 19, "yyyy": 2023 }
+      }
+    ]
   }
 }

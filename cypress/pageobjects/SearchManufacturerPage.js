@@ -1,12 +1,11 @@
 // SearchManufacturer.js
 
 class SearchManufacturerPage{
-    get manufacturerNameInput(){
-        return cy.xpath("//input[@id='SearchManufacturerName']")
-    }
-    get searchButton(){
-        return cy.xpath("//button[@id='search-manufacturers']")
-    }
+
+    // getters
+
+    get manufacturerNameInput(){ return cy.xpath("//input[@id='SearchManufacturerName']") }
+    get searchButton(){ return cy.xpath("//button[@id='search-manufacturers']") }
     get dataTable(){
         return {
             // the whole table
@@ -24,27 +23,14 @@ class SearchManufacturerPage{
                 return cy.xpath("//div[@class='dataTables_scrollBody']//table//tbody//tr//td[4]")
             }
         }
-    }
+    } 
+    get importButton(){ return cy.xpath("//button[@name='importexcel']") } 
+    get importModal(){ return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']") } 
+    get importModalTitle(){ return cy.get("#importexcel-window-title") } 
+    get finalizeImportButton(){ return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']//form//button") } 
+    get importAlert(){ return cy.get('.alert') }
 
-    get importButton(){
-        return cy.xpath("//button[@name='importexcel']")
-    }
-
-    get importModal(){
-        return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']")
-    }
-
-    get importModalTitle(){
-        return cy.get("#importexcel-window-title")
-    }
-
-    get finalizeImportButton(){
-        return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']//form//button")
-    }
-
-    get importAlert(){
-        return cy.get('.alert')
-    }
+    // methods
 
     visit(){
         cy.xpath("//p[normalize-space()='Catalog']").click()

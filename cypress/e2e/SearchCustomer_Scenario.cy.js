@@ -13,11 +13,17 @@ describe("TS_03: Search Customer Scenario", ()=>{
     beforeEach(()=>{
         LoginPageObject.visit()
         cy.fixture('appData').then((data)=>{
-            cy.LoginAndVerify(LoginPageObject, [data.LoginPage.validCredentials.email, data.LoginPage.validCredentials.password], ()=>DashboardPageObject.contentHeader.should('exist').should('contain.text', 'Dashboard'))
+            cy.LoginAndVerify(
+                LoginPageObject, 
+                [data.LoginPage.validCredentials.email, data.LoginPage.validCredentials.password], 
+                ()=>DashboardPageObject.contentHeader.should('exist').should('contain.text', 'Dashboard')
+            )
         })
     })
 
-    afterEach(()=>cy.Logout())
+    afterEach(()=>{
+        cy.Logout()
+    })
 
     it("TC_01: Search Customer by EMailID", ()=>{
         SearchCustomerObject.visit()
@@ -28,6 +34,7 @@ describe("TS_03: Search Customer Scenario", ()=>{
             })
         })
     })
+    
     it("TC_02: Search Customer by Name", ()=>{
         SearchCustomerObject.visit()
         cy.fixture('appData').then(data=>{

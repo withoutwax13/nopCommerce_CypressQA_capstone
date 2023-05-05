@@ -8,45 +8,16 @@ class LoginPage{
 
     // getters
 
-    get pageTitle(){
-        return cy.get("div[class='page-title'] h1")
-    }
-
-    get contentTitle(){
-        return cy.get("div[class='title'] strong")
-    }
-
-    get validationErrorMessage(){
-        return cy.get(".validation-summary-errors")
-    }
-
-    get emailInput() {
-        return cy.get("#Email")
-    }
-
-    get passwordInput() {
-        return cy.get("#Password")
-    }
-
-    get emailInputLabel() {
-        return cy.get("label[for='Email']")
-    }
-
-    get passwordInputLabel() {
-        return cy.get("label[for='Password']")
-    }
-
-    get loginButton() {
-        return cy.get("button[type='submit']")
-    }
-
-    get rememberMeChkBox() {
-        return cy.get("#RememberMe")
-    }
-
-    get rememberMeChkBoxLabel() {
-        return cy.get("label[for='RememberMe']")
-    }
+    get pageTitle(){ return cy.get("div[class='page-title'] h1") }
+    get contentTitle(){ return cy.get("div[class='title'] strong") }
+    get validationErrorMessage(){ return cy.get(".validation-summary-errors") }
+    get emailInput(){ return cy.get("#Email") }
+    get passwordInput(){ return cy.get("#Password") }
+    get emailInputLabel(){ return cy.get("label[for='Email']") }
+    get passwordInputLabel(){ return cy.get("label[for='Password']") }
+    get loginButton(){ return cy.get("button[type='submit']") }
+    get rememberMeChkBox(){ return cy.get("#RememberMe") }
+    get rememberMeChkBoxLabel(){ return cy.get("label[for='RememberMe']") }
 
     // methods
 

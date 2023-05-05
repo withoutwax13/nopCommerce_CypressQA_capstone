@@ -24,9 +24,11 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload'
+import 'cypress-iframe';
 
 /// <reference types="cypress"/>
 /// <reference types="cypress-xpath"/>
+/// <reference types="cypress-iframe" />
 
 
 // Custom Commands/Methods
@@ -53,4 +55,9 @@ Cypress.Commands.add('ExpectNotHidden', (_object)=>{
 
 Cypress.Commands.add("ReadExcelFile", (__filename)=>{
     //
+})
+
+Cypress.Commands.add('iframe_plugin_handler', (locator)=>{
+    cy.frameLoaded(locator)
+    return cy.iframe(locator).should('is.visible').click()
 })

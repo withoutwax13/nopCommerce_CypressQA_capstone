@@ -3,21 +3,10 @@
 class SearchCustomerPage{
 
     // getters
-    get emailInput(){
-        return cy.xpath("//input[@id='SearchEmail']")
-    }
-
-    get firstNameInput(){
-        return cy.xpath("//input[@id='SearchFirstName']")
-    }
-
-    get lastNameInput(){
-        return cy.xpath("//input[@id='SearchLastName']")
-    }
-
-    get searchButton(){
-        return cy.xpath("//button[@id='search-customers']")
-    }
+    get emailInput(){ return cy.xpath("//input[@id='SearchEmail']") } 
+    get firstNameInput(){ return cy.xpath("//input[@id='SearchFirstName']") } 
+    get lastNameInput(){ return cy.xpath("//input[@id='SearchLastName']") } 
+    get searchButton(){ return cy.xpath("//button[@id='search-customers']") }
 
     // methods
     visit(){
