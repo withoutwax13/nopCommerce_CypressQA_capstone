@@ -1,22 +1,23 @@
 // AddBlogPostPage.js
 import ListBlogPostsPage from "./ListBlogPostsPage"
+import selectors from "../fixtures/selectors"
 
 class AddBlogPostPage{
 
     // getters
 
-    get titleInput(){ return cy.xpath("//input[@id='Title']") }
-    get bodyInput(){ return cy.iframe_plugin_handler("#Body_ifr") }
-    get overviewInput(){ return cy.xpath("//textarea[@id='BodyOverview']") }
-    get tagInput(){ return cy.get('.tag-editor') }
-    get startDateInput(){ return cy.xpath("//input[@id='StartDateUtc']") }
-    get endDateInput(){ return cy.xpath("//input[@id='EndDateUtc']") }
-    get startDateCalendar(){ return cy.xpath("//span[@aria-controls='StartDateUtc_dateview']//span[@class='k-icon k-i-calendar']") }
-    get endDateCalendar(){ return cy.xpath("//span[@aria-controls='EndDateUtc_dateview']//span[@class='k-icon k-i-calendar']") }
-    get startDateClock(){ return cy.xpath("//span[@aria-controls='StartDateUtc_timeview']//span[@class='k-icon k-i-clock']") }
-    get endDateClock(){ return cy.xpath("//span[@aria-controls='EndDateUtc_timeview']//span[@class='k-icon k-i-clock']") }
-    get storeListBox(){ return cy.xpath("//div[@role='listbox']") }
-    get saveButton(){ return cy.xpath("//button[@name='save']") }
+    get titleInput(){ return cy.xpath(selectors.AddBlog.titleInput) }
+    get bodyInput(){ return cy.iframe_plugin_handler(selectors.AddBlog.bodyInputIframe) }
+    get overviewInput(){ return cy.xpath(selectors.AddBlog.overviewInput) }
+    get tagInput(){ return cy.get(selectors.AddBlog.tagInput) }
+    get startDateInput(){ return cy.xpath(selectors.AddBlog.startDateInput) }
+    get endDateInput(){ return cy.xpath(selectors.AddBlog.endDateInput) }
+    get startDateCalendar(){ return cy.xpath(selectors.AddBlog.startDateCalendar) }
+    get endDateCalendar(){ return cy.xpath(selectors.AddBlog.endDateCalendar) }
+    get startDateClock(){ return cy.xpath(selectors.AddBlog.startDateClock) }
+    get endDateClock(){ return cy.xpath(selectors.AddBlog.endDateClock) }
+    get storeListBox(){ return cy.xpath(selectors.AddBlog.storeListBox) }
+    get saveButton(){ return cy.xpath(selectors.AddBlog.saveButton) }
 
     // methods
 
@@ -55,7 +56,7 @@ class AddBlogPostPage{
             },
             datePicker: ({mm, dd, yyyy})=>{
                 this.startDateCalendar.click()
-                cy.xpath(`//div[@class='k-animation-container'][1]//a[@data-value='${yyyy}/${mm-1}/${dd}']`).should('exist').click({force:true})
+                cy.xpath(`${selectors.AddBlog.startDateCalendarPick}'${yyyy}/${mm-1}/${dd}']`).should('exist').click({force:true})
                 this.startDateInput.invoke('val').then(val=>{
                     expect(val).to.include(`${mm}/${dd}/${yyyy}`)
                 })
@@ -71,7 +72,7 @@ class AddBlogPostPage{
             },
             datePicker: ({mm, dd, yyyy})=>{
                 this.endDateCalendar.click()
-                cy.xpath(`//div[@class='k-animation-container'][2]//a[@data-value='${yyyy}/${mm-1}/${dd}']`).should('exist').click({force:true})
+                cy.xpath(`${selectors.AddBlog.endDateCalendarPick}'${yyyy}/${mm-1}/${dd}']`).should('exist').click({force:true})
                 this.endDateInput.invoke('val').then(val=>{
                     expect(val).to.include(`${mm}/${dd}/${yyyy}`)
                 })

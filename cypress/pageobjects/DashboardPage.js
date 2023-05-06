@@ -5,32 +5,34 @@
 // Additionally, it provides methods to retrieve all cards, collapsed cards, and expanded cards, to find the content body of a card, and to click the collapse toggle button of a card.
 // Overall, this class encapsulates the behavior and elements of the dashboard page, making it easier to maintain and reuse in tests.
 
+import selectors from "../fixtures/selectors"
+
 class DashboardPage{
 
     // getters
 
-    get contentHeader(){ return cy.get("div[class='content-header'] h1") }
-    get footer(){ return cy.get(".main-footer") }
-    get configStepsCard(){return this._wrapCard('configuration-steps-card')}
-    get newsBoxCard(){return this._wrapCard('nopcommerce-news-box')}
-    get commonStatsCard(){return this._wrapCard('nopcommerce-common-statistics-card')}
-    get orderStatsCard(){return this._wrapCard('order-statistics-card')}
-    get customerStatsCard(){return this._wrapCard('customer-statistics-card')}
-    get orderAverageReportCard(){return this._wrapCard('order-average-report-card')}
-    get orderIncompleteOrderReportCard(){return this._wrapCard('order-incomplete-report-card')}
-    get latestOrdersCard(){return this._wrapCard('order-incomplete-report-card')}
-    get popularSearchTermsCard(){return this._wrapCard('popular-search-terms-card')}
-    get bestsellersReportQuantityCard(){return this._wrapCard('bestsellers-report-quantity-card')}
-    get bestsellersReportAmountCard(){return this._wrapCard('bestsellers-report-amount-card')}
+    get contentHeader(){ return cy.get(selectors.Dashboard.contentHeader) }
+    get footer(){ return cy.get(selectors.Dashboard.footer) }
+    get configStepsCard(){ return this._wrapCard(selectors.Dashboard.configStepsCard) }
+    get newsBoxCard(){ return this._wrapCard(selectors.Dashboard.newsBoxCard) }
+    get commonStatsCard(){ return this._wrapCard(selectors.Dashboard.commonStatsCard) }
+    get orderStatsCard(){ return this._wrapCard(selectors.Dashboard.orderStatsCard) }
+    get customerStatsCard(){ return this._wrapCard(selectors.Dashboard.customerStatsCard) }
+    get orderAverageReportCard(){ return this._wrapCard(selectors.Dashboard.orderAverageReportCard) }
+    get orderIncompleteOrderReportCard(){ return this._wrapCard(selectors.Dashboard.orderIncompleteOrderReportCard) }
+    get latestOrdersCard(){ return this._wrapCard(selectors.Dashboard.latestOrdersCard) }
+    get popularSearchTermsCard(){ return this._wrapCard(selectors.Dashboard.popularSearchTermsCard) }
+    get bestsellersReportQuantityCard(){ return this._wrapCard(selectors.Dashboard.bestsellersReportQuantityCard) }
+    get bestsellersReportAmountCard(){ return this._wrapCard(selectors.Dashboard.bestsellersReportAmountCard) }
 
     // methods
 
     _getCard(locator){
-        return cy.xpath(`//div[contains(@class, 'card-primary') and @id='${locator}']`)
+        return cy.xpath(`${selectors.Dashboard.getCardPattern}'${locator}']`)
     }
 
     _getCollapseButton(locator){
-        return cy.xpath(`//div[contains(@class, 'card-primary') and @id='${locator}']//button[@data-card-widget="collapse"]//i`)
+        return cy.xpath(`${selectors.Dashboard.collapseButtonPattern}'${locator}']//button[@data-card-widget="collapse"]//i`)
     }
 
     _wrapCard(id){
@@ -59,7 +61,7 @@ class DashboardPage{
     }
 
     clickCollapseToggle(card){
-        return cy.wrap(card).find('button[data-card-widget="collapse"]').click()
+        return cy.wrap(card).find(selectors.Dashboard.clickCollapseToggle).click()
     }
     
 }

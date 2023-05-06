@@ -1,25 +1,27 @@
 // ListBlogPostsPage.js
+import selectors from "../fixtures/selectors"
+
 class ListBlogPostsPage{
 
     // getters
 
-    get addButton(){ return cy.xpath("//a[@class='btn btn-primary']") }
+    get addButton(){ return cy.xpath(selectors.ListBlog.addButton) }
     get blogPostGrild(){
         return {
             table: ()=>{ 
-                return cy.xpath("//table[@id='blogpost-grid']") 
+                return cy.xpath(selectors.ListBlog.table) 
             },
             titleData: ()=>{ 
-                return cy.xpath("//table[@id='blogpost-grid']//tbody//tr//td[1]") 
+                return cy.xpath(selectors.ListBlog.titleData) 
             },
             rowData: ()=>{ 
-                return cy.xpath("//table[@id='blogpost-grid']//tbody//tr") 
+                return cy.xpath(selectors.ListBlog.rowData) 
             },
             startDateData: ()=>{ 
-                return cy.xpath("//table[@id='blogpost-grid']//tbody//tr//td[4]") 
+                return cy.xpath(selectors.ListBlog.startDateData) 
             },
             endDateData: ()=>{ 
-                return cy.xpath("//table[@id='blogpost-grid']//tbody//tr//td[5]") 
+                return cy.xpath(selectors.ListBlog.endDateData) 
             }
         }
     }
@@ -28,8 +30,8 @@ class ListBlogPostsPage{
 
     visit(){
         cy.visit("https://admin-demo.nopcommerce.com/Admin")
-        cy.xpath("//p[normalize-space()='Content management']").click()
-        cy.xpath("//p[normalize-space()='Blog posts']").click()
+        cy.xpath(selectors.ListBlog.contentManagement).click()
+        cy.xpath(selectors.ListBlog.blogPostItemLink).click()
         cy.fixture('appData').then(data=>{
             cy.url().should('eq', data.ListBlogPostsPage.url)
         })

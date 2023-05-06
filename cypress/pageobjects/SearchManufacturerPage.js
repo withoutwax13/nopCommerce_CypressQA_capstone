@@ -1,40 +1,42 @@
 // SearchManufacturer.js
 
+import selectors from "../fixtures/selectors"
+
 class SearchManufacturerPage{
 
     // getters
 
-    get manufacturerNameInput(){ return cy.xpath("//input[@id='SearchManufacturerName']") }
-    get searchButton(){ return cy.xpath("//button[@id='search-manufacturers']") }
+    get manufacturerNameInput(){ return cy.xpath(selectors.SearchManufacturer.manufacturerNameInput) }
+    get searchButton(){ return cy.xpath(selectors.SearchManufacturer.searchButton) }
     get dataTable(){
         return {
             // the whole table
             table: ()=>{
-                return cy.xpath("//div[@class='dataTables_scroll']")
+                return cy.xpath(selectors.SearchManufacturer.table)
             },
 
             // returns all instances of td under the name field
             nameData: ()=>{
-                return cy.xpath("//div[@class='dataTables_scrollBody']//table//tbody//tr//td[2]")
+                return cy.xpath(selectors.SearchManufacturer.nameData)
             },
 
             // returns all instances of td under the display order field
             displayOrderData: ()=>{
-                return cy.xpath("//div[@class='dataTables_scrollBody']//table//tbody//tr//td[4]")
+                return cy.xpath(selectors.SearchManufacturer.displayOrderData)
             }
         }
     } 
-    get importButton(){ return cy.xpath("//button[@name='importexcel']") } 
-    get importModal(){ return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']") } 
-    get importModalTitle(){ return cy.get("#importexcel-window-title") } 
-    get finalizeImportButton(){ return cy.xpath("//div[@id='importexcel-window']//div[@class='modal-content']//form//button") } 
-    get importAlert(){ return cy.get('.alert') }
+    get importButton(){ return cy.xpath(selectors.SearchManufacturer.importButton) } 
+    get importModal(){ return cy.xpath(selectors.SearchManufacturer.importModal) } 
+    get importModalTitle(){ return cy.get(selectors.SearchManufacturer.importModalTitle) } 
+    get finalizeImportButton(){ return cy.xpath(selectors.SearchManufacturer.finalizeImportButton) } 
+    get importAlert(){ return cy.get(selectors.SearchManufacturer.importAlert) }
 
     // methods
 
     visit(){
-        cy.xpath("//p[normalize-space()='Catalog']").click()
-        cy.xpath("//p[normalize-space()='Manufacturers']").click()
+        cy.xpath(selectors.SearchManufacturer.catalog).click()
+        cy.xpath(selectors.SearchManufacturer.manufacturersItemLink).click()
         cy.url().should("eq", "https://admin-demo.nopcommerce.com/Admin/Manufacturer/List")
         return this
     }
