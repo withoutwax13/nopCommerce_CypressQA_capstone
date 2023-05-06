@@ -59,5 +59,6 @@ Cypress.Commands.add("ReadExcelFile", (__filename)=>{
 
 Cypress.Commands.add('iframe_plugin_handler', (locator)=>{
     cy.frameLoaded(locator)
+    cy.wait(8000)
     return cy.iframe(locator).should('is.visible').click()
 })
