@@ -1,7 +1,7 @@
 describe("Scenario: Github Public REST API", ()=>{
 
-    var repositoryName = `dummy${Math.random().toString(5).substring(2)}`, githubAuthToken = "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", country = "Philippines"
-    
+    var repositoryName = `dummy${Math.random().toString(5).substring(2)}`, githubAuthToken = process.env.GITHUB_PERSONAL_TOKEN, country = "Philippines"
+
     it("TC_01: Create a repository for the authenticated user", ()=>{
         cy.request({
             method: 'POST',
