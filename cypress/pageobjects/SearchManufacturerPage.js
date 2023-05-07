@@ -37,7 +37,9 @@ class SearchManufacturerPage{
     visit(){
         cy.xpath(selectors.SearchManufacturer.catalog).click()
         cy.xpath(selectors.SearchManufacturer.manufacturersItemLink).click()
-        cy.url().should("eq", "https://admin-demo.nopcommerce.com/Admin/Manufacturer/List")
+        cy.fixture('appData').then(data=>{
+            cy.url().should("eq", data.SearchManufacturer.url)
+        })
         return this
     }
 
@@ -84,7 +86,15 @@ class SearchManufacturerPage{
     uploadSpreadsheet(_FILENAME){
         cy.fixture(_FILENAME, 'binary').then(Cypress.Blob.binaryStringToBlob)
         .then(fileContent => {
-            cy.get("input[type='file']").attachFile({ fileContent, fileName: _FILENAME, mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', encoding:'utf8' })
+            cy.get("input[type='file']")
+                .attachFile(
+                    { 
+                        fileContent, 
+                        fileName: _FILENAME, 
+                        mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 
+                        encoding:'utf8' 
+                    }
+            )
         })
         this.finalizeImportButton.click()
     }

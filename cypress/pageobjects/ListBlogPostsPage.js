@@ -29,7 +29,9 @@ class ListBlogPostsPage{
     // methods
 
     visit(){
-        cy.visit("https://admin-demo.nopcommerce.com/Admin")
+        cy.fixture('appData').then(data=>{
+            cy.visit(data.DashboardPage.url)
+        })
         cy.xpath(selectors.ListBlog.contentManagement).click()
         cy.xpath(selectors.ListBlog.blogPostItemLink).click()
         cy.fixture('appData').then(data=>{

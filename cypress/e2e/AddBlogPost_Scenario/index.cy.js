@@ -1,10 +1,10 @@
-// AddBlogPost_Scenario.cy.js
+// AddBlogPost_Scenario
 
-import AddBlogPostPage from "../pageobjects/AddBlogPostPage"
-import ListBlogPostsPage from "../pageobjects/ListBlogPostsPage"
-import LoginPage from "../pageobjects/LoginPage"
+import AddBlogPostPage from "../../pageobjects/AddBlogPostPage"
+import ListBlogPostsPage from "../../pageobjects/ListBlogPostsPage"
+import LoginPage from "../../pageobjects/LoginPage"
 
-describe("TS_06: Adding Blog Posts", ()=>{
+describe("Scenario: Add Blog Post", ()=>{
 
     var AddBlogPostPageObject = new AddBlogPostPage(),
         ListBlogPostsObject = new ListBlogPostsPage(),
@@ -22,12 +22,10 @@ describe("TS_06: Adding Blog Posts", ()=>{
             cy.LoginAndVerify(
                 LoginPageObject, 
                 [
-                    data.LoginPage.validCredentials.email, 
+                    data.LoginPage.validCredentials.email,
                     data.LoginPage.validCredentials.password
                 ], 
-                ()=>{
-                    cy.url().should('eq', data.DashboardPage.url)
-                }
+                ()=>cy.title().should('eq', data.DashboardPage.title).should('not.eq', data.LoginPage.title)
             )
         })
 

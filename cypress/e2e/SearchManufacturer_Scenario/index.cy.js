@@ -1,9 +1,9 @@
-// SearchManufacturer.cy.js
+// SearchManufacturer
 
-import LoginPage from "../pageobjects/LoginPage"
-import SearchManufacturerPage from "../pageobjects/SearchManufacturerPage"
+import LoginPage from "../../pageobjects/LoginPage"
+import SearchManufacturerPage from "../../pageobjects/SearchManufacturerPage"
 
-describe("TS_04: Search Manufacturer Scenario", ()=>{
+describe("Scenario: Search Manufacturer", ()=>{
 
     var SearchManufacturerObject = new SearchManufacturerPage(),
         testData
@@ -20,12 +20,10 @@ describe("TS_04: Search Manufacturer Scenario", ()=>{
             cy.LoginAndVerify(
                 LoginPageObject, 
                 [
-                    data.LoginPage.validCredentials.email, 
+                    data.LoginPage.validCredentials.email,
                     data.LoginPage.validCredentials.password
                 ], 
-                ()=>{
-                    cy.url().should('eq', data.DashboardPage.url)
-                }
+                ()=>cy.title().should('eq', data.DashboardPage.title).should('not.eq', data.LoginPage.title)
             )
         })
     })

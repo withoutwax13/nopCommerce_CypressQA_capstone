@@ -1,10 +1,10 @@
-// EditBlogPost_Scenario.cy.js
+// EditBlogPost_Scenario
 
-import EditBlogPostPage from "../pageobjects/EditBlogPostPage"
-import ListBlogPostsPage from "../pageobjects/ListBlogPostsPage"
-import LoginPage from "../pageobjects/LoginPage"
+import EditBlogPostPage from "../../pageobjects/EditBlogPostPage"
+import ListBlogPostsPage from "../../pageobjects/ListBlogPostsPage"
+import LoginPage from "../../pageobjects/LoginPage"
 
-describe("TS_07: Edting Blog Post", ()=>{
+describe("Senario: Edit Blog Post", ()=>{
 
     var EditBlogPostPageObject = new EditBlogPostPage(),
         ListBlogPostsObject = new ListBlogPostsPage(),
@@ -22,12 +22,10 @@ describe("TS_07: Edting Blog Post", ()=>{
             cy.LoginAndVerify(
                 LoginPageObject, 
                 [
-                    data.LoginPage.validCredentials.email, 
+                    data.LoginPage.validCredentials.email,
                     data.LoginPage.validCredentials.password
                 ], 
-                ()=>{
-                    cy.url().should('eq', data.DashboardPage.url)
-                }
+                ()=>cy.title().should('eq', data.DashboardPage.title).should('not.eq', data.LoginPage.title)
             )
         })
 

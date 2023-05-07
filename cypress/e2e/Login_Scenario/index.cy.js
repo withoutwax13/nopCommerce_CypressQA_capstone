@@ -1,13 +1,13 @@
-// LoginScenario.cy.js
+// LoginScenario
 
 // Import the LoginPage object and a random data generator library
-import LoginPage from "../pageobjects/LoginPage"
+import LoginPage from "../../pageobjects/LoginPage"
 import { randEmail, randPassword } from '@ngneat/falso';
 
-describe('TS_01: Login Scenario', () => {
+describe('Scenario: Login', () => {
 
   var LoginPageobject = new LoginPage()
-  var pageUrl, title, adminEmail, adminPassword, successLoginURL
+  var pageUrl, title, adminEmail, adminPassword, successLoginURL, successLoginTitle
 
   before(()=>{
 
@@ -20,6 +20,7 @@ describe('TS_01: Login Scenario', () => {
       adminPassword = data.LoginPage.validCredentials.password
       title = data.LoginPage.title
       successLoginURL = data.DashboardPage.url
+      successLoginTitle = data.DashboardPage.title
       
     })
   })
@@ -42,7 +43,11 @@ describe('TS_01: Login Scenario', () => {
     cy.LoginAndVerify(
       LoginPageobject, 
       [adminEmail, adminPassword], 
-      ()=>cy.url().should('eq', successLoginURL)
+      ()=>{
+        cy.url().should('eq', successLoginURL)
+        cy.title().should('eq', successLoginTitle)
+        cy.title().should('not.eq', title)
+      }
     )
     
     // Post-Condition: Logout
@@ -62,6 +67,9 @@ describe('TS_01: Login Scenario', () => {
         LoginPageobject.validationErrorMessage
           .should('is.visible')
           .and('contain', 'Login was unsuccessful. Please correct the errors and try again.')
+        cy.url().should('not.eq', successLoginURL)
+        cy.title().should('not.eq', successLoginTitle)
+        cy.title().should('eq', title)
       }
     )    
 
@@ -79,6 +87,8 @@ describe('TS_01: Login Scenario', () => {
       ()=>{
         LoginPageobject.validationErrorMessage.should('is.visible')
         cy.url().should('not.eq', successLoginURL)
+        cy.title().should('not.eq', successLoginTitle)
+        cy.title().should('eq', title)
       }
     )
 
@@ -93,7 +103,11 @@ describe('TS_01: Login Scenario', () => {
     cy.LoginAndVerify(
       LoginPageobject, 
       ["\b", "\b"], 
-      ()=>cy.url().should('not.eq', successLoginURL)
+      ()=>{
+        cy.url().should('not.eq', successLoginURL)
+        cy.title().should('not.eq', successLoginTitle)
+        cy.title().should('eq', title)
+      }
     )
     
   })

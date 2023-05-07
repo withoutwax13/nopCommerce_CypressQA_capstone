@@ -56,6 +56,18 @@ const selectors = {
         importAlert: '.alert',
         catalog: "//p[normalize-space()='Catalog']",
         manufacturersItemLink: "//p[normalize-space()='Manufacturers']"
+    },
+    Login: {
+        pageTitle: "div[class='page-title'] h1",
+        contentTitle: "div[class='title'] strong",
+        validationErrorMessage: ".validation-summary-errors",
+        emailInput: "#Email",
+        passwordInput: "#Password",
+        emailInputLabel: "label[for='Email']",
+        passwordInputLabel: "label[for='Password']",
+        loginButton: "button[type='submit']",
+        rememberMeChkBox: "#RememberMe",
+        rememberMeChkBoxLabel: "label[for='RememberMe']"
     }
 }
 

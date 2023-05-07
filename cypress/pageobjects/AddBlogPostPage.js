@@ -31,7 +31,7 @@ class AddBlogPostPage{
     }
 
     enterTitle(titleData){
-        return this.titleInput.clear().type(titleData)
+        return this.titleInput.clear().type(titleData).should('have.value', titleData)
     }
     
     enterBody(bodyData){
@@ -39,13 +39,14 @@ class AddBlogPostPage{
     }
 
     enterOverview(overviewData){
-        return this.overviewInput.clear().type(overviewData)
+        return this.overviewInput.clear().type(overviewData).should('have.value', titleData)
     }
 
     enterTag(tagData){
         tagData.forEach(tag => {
             this.tagInput.type(`${tag}{enter}`)
         });
+        this.tagInput.children().should('have.length', tagData.length + 2)
         return this
     }
 
