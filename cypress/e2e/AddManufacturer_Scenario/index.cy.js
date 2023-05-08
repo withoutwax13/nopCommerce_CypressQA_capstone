@@ -13,9 +13,13 @@ describe("Scenario: Add Manufacturer", ()=>{
     // Admin already redirected to dashboard page
     beforeEach(()=>{
 
+        // instantiate LoginPage object
         var LoginPageObject = new LoginPage()
 
+        // visit LoginPage
         LoginPageObject.visit()
+
+        // log in with valid credentials
         cy.fixture('appData').then((data)=>{
             cy.LoginAndVerify(
                 LoginPageObject, 
@@ -28,22 +32,26 @@ describe("Scenario: Add Manufacturer", ()=>{
         })
     })
 
+    // get test data from fixture file
     before(()=>{
         cy.fixture('appData').then(data=>{
             testData = data.AddManufacturer.testData
         })
     })
 
+    // log out after each test case
     afterEach(()=>{
         cy.Logout()
     })
 
     it("TC_01: Verify working adding manufacturer feature through uploading spreadsheet", ()=>{
-        SearchManufacturerObject.visit()
-        SearchManufacturerObject.clickImportButton()
-        SearchManufacturerObject.assertModalTitleMatch("Import from Excel")
-        SearchManufacturerObject.uploadSpreadsheet("manufacturers.xlsx")
-        SearchManufacturerObject.verifyImportSucess()
+        SearchManufacturerObject.visit() // visit SearchManufacturerPage
+        SearchManufacturerObject.clickImportButton() // click import button
+        SearchManufacturerObject.assertModalTitleMatch("Import from Excel") // assert modal title
+        SearchManufacturerObject.uploadSpreadsheet("manufacturers.xlsx") // upload spreadsheet
+        SearchManufacturerObject.verifyImportSucess() // verify import success
+        
+        // assert test data in field
         testData.forEach((data)=>{
             SearchManufacturerObject.assertDataInField(data.name, "name")
         })
