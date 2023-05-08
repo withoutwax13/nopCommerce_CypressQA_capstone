@@ -19,7 +19,7 @@ describe("Scenario: Github and Hipolabs Public REST API", ()=>{
         }).then(response=>{
             expect(response.status).to.equal(201) // assert successful response
             expect(response.duration).to.be.lessThan(2001) // assert response time less than or equal to 2000ms
-            expect(response.headers['content-type']).to.equal('application/json') // assert response file type is json
+            expect(response.headers['content-type']).to.equal('application/json; charset=utf-8') // assert response file type is json
             expect(response.body.name).to.equal(repositoryName) // assert repo name as correct repo name reflected in server
         })
     })
@@ -35,7 +35,7 @@ describe("Scenario: Github and Hipolabs Public REST API", ()=>{
         }).then(response=>{
             expect(response.status).to.equal(200) // assert successful response
             expect(response.duration).to.be.lessThan(2001) // assert response time less than or equal to 2000ms
-            expect(response.headers['content-type']).to.equal('application/json') // assert response file type is json
+            expect(response.headers['content-type']).to.equal('application/json; charset=utf-8') // assert response file type is json
             expect(response.body.filter(repoItem=>repoItem.name === repositoryName).length).to.equal(1)
             // assert response body has an item with the same repo name created in test case 1
         })
