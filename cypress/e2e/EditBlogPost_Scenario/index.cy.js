@@ -58,8 +58,8 @@ describe("Senario: Edit Blog Post", ()=>{
             yyyy: blogPost_testData.endDate.yyyy
         })
         EditBlogPostPageObject.clickSaveButton()
+        ListBlogPostsObject.assertSuccessAlert()
         ListBlogPostsObject.assertGridHas(blogPost_testData)
-
     })
 
 })

@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "headlessTest:chrome": "npx cypress run --e2e --browser chrome --env",
+    "headlessTest:edge": "npx cypress run --e2e --browser edge --env",
+    "headlessTest:firefox": "npx cypress run --e2e --browser firefox --env",
+    "headed:chrome": "npx cypress run --e2e --browser chrome --headed --env",
+    "headed:edge": "npx cypress run --e2e --browser edge --headed --env",
+    "headed:firefox": "npx cypress run --e2e --browser firefox --headed --env"
   },
   "author": "",
   "license": "ISC",

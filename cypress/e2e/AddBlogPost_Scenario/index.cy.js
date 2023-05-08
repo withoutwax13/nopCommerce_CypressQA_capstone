@@ -59,6 +59,7 @@ describe("Scenario: Add Blog Post", ()=>{
                 yyyy: blogPost.endDate.yyyy
             })
             AddBlogPostPageObject.clickSaveButton()
+            ListBlogPostsObject.assertSuccessAlert()
             ListBlogPostsObject.assertGridHas(blogPost)
             
         })

@@ -26,6 +26,10 @@ class ListBlogPostsPage{
         }
     }
 
+    get alertMessage(){
+        return cy.get('.alert.alert-success.alert-dismissable')
+    }
+
     // methods
 
     visit(){
@@ -43,8 +47,14 @@ class ListBlogPostsPage{
         return this.addButton.click()
     }
 
-    assertGridHas(_EXPECTED_BLOG_DETAILS){
+    assertSuccessAlert(){
+        this.alertMessage.should('contain', 'The new blog post has been added successfully.')
+    }
+
+    assertGridHas(_EXPECTED_BLOG_DETAILS, notDefaultTime=false){
         this.blogPostGrild.table().should('contain', _EXPECTED_BLOG_DETAILS.title)
+        this.blogPostGrild.table()
+            .should('contain', `${_EXPECTED_BLOG_DETAILS.startDate.mm > 9 ? _EXPECTED_BLOG_DETAILS.startDate.mm : `0${_EXPECTED_BLOG_DETAILS.startDate.mm}`}/${_EXPECTED_BLOG_DETAILS.startDate.dd > 9 ? _EXPECTED_BLOG_DETAILS.startDate.dd : `0${_EXPECTED_BLOG_DETAILS.startDate.dd}`}/${_EXPECTED_BLOG_DETAILS.startDate.yyyy} ${notDefaultTime ? `${_EXPECTED_BLOG_DETAILS.startTime.hr > 9 ? _EXPECTED_BLOG_DETAILS.startTime.hr : `0${_EXPECTED_BLOG_DETAILS.startTime.hr}`}:${_EXPECTED_BLOG_DETAILS.startTime.min > 9 ? _EXPECTED_BLOG_DETAILS.startTime.min : `0${_EXPECTED_BLOG_DETAILS.startTime.min}`}:00 ${_EXPECTED_BLOG_DETAILS.startTime.hr > 11 ? `PM` : `AM`}` : `12:00:00 AM`}`)
     }
 }
 

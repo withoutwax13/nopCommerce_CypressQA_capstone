@@ -50,6 +50,7 @@
         "body": "This is a sample body 1",
         "tag": ["testTag1", "testTag2", "testTag3"],
         "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "startTime": {"hr": 4, "min": 30},
         "endDate": { "mm": 5, "dd": 9, "yyyy": 2023 }
       },
       {
@@ -57,6 +58,7 @@
         "body": "This is a sample body 2",
         "tag": ["testTag1", "testTag2", "testTag3"],
         "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "startTime": {"hr": 4, "min": 30},
         "endDate": { "mm": 5, "dd": 10, "yyyy": 2023 }
       },
       {
@@ -64,6 +66,7 @@
         "body": "This is a sample body 4",
         "tag": ["testTag1", "testTag2"],
         "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "startTime": {"hr": 4, "min": 30},
         "endDate": { "mm": 5, "dd": 11, "yyyy": 2023 }
       },
       {
@@ -71,6 +74,7 @@
         "body": "This is a sample body 5",
         "tag": ["testTag2", "testTag3"],
         "startDate": { "mm": 5, "dd": 1, "yyyy": 2023 },
+        "startTime": {"hr": 4, "min": 30},
         "endDate": { "mm": 5, "dd": 19, "yyyy": 2023 }
       }
     ]
