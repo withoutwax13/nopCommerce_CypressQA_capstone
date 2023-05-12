@@ -1,6 +1,6 @@
 describe("Scenario: Github and Hipolabs Public REST API", ()=>{
 
-    var repositoryName = `dummy${Math.random().toString(5).substring(2)}`, // random repository name
+    var repositoryName = `dummy${Math.random().toString(5).substring(15)}`, // random repository name
         githubAuthToken = Cypress.env('GITHUB_PERSONAL_TOKEN'), // get auth token from cypress environment
         country = "Philippines" // test data
 
