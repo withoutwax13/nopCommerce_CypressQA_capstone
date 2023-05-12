@@ -53,10 +53,6 @@ Cypress.Commands.add('ExpectNotHidden', (_object)=>{
     _object.then((obj)=>cy.wrap(obj).should('have.css', 'display', 'block'))
 })
 
-Cypress.Commands.add("ReadExcelFile", (__filename)=>{
-    //
-})
-
 Cypress.Commands.add('iframe_plugin_handler', (locator)=>{
     cy.frameLoaded(locator).wait(4000)
     return cy.iframe(locator).should('be.visible').click()

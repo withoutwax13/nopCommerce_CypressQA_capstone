@@ -39,9 +39,7 @@ describe("Scenario: Dashboard", ()=>{
     DashboardPageObject.getAllExpandedCards().each(card=>{
       cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
     })
-  })
 
-  it("TC_02: Verify that a collapsed card can be expanded and its content body is shown", ()=>{
     // Identify all collapsed cards
     // Toggle the expand button on the card header of each card
     // Verify if the content bodies are shown
@@ -51,9 +49,7 @@ describe("Scenario: Dashboard", ()=>{
         cy.ExpectNotHidden(DashboardPageObject.findContentBody(card))
       })
     })
-  })
 
-  it("TC_03: Verify that a expanded card can be collapsed and its content body is not shown", ()=>{
     // Identify all expanded cards
     // Toggle the collapse button on the card header of each card
     // Verify if the content bodies are hidden
@@ -63,6 +59,7 @@ describe("Scenario: Dashboard", ()=>{
         cy.ExpectHidden(DashboardPageObject.findContentBody(card))
       })
     })
+
   })
 
 })

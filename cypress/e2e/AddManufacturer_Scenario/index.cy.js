@@ -47,8 +47,12 @@ describe("Scenario: Add Manufacturer", ()=>{
     it("TC_01: Verify working adding manufacturer feature through uploading spreadsheet", ()=>{
         SearchManufacturerObject.visit() // visit SearchManufacturerPage
         SearchManufacturerObject.clickImportButton() // click import button
-        SearchManufacturerObject.assertModalTitleMatch("Import from Excel") // assert modal title
-        SearchManufacturerObject.uploadSpreadsheet("manufacturers.xlsx") // upload spreadsheet
+
+        cy.fixture('appData').then(appData=>{
+            SearchManufacturerObject.assertModalTitleMatch(appData.AddManufacturer.modalTitle) // assert modal title
+            SearchManufacturerObject.uploadSpreadsheet(appData.AddManufacturer.testFile) // upload spreadsheet
+        })
+
         SearchManufacturerObject.verifyImportSucess() // verify import success
         
         // assert test data in field

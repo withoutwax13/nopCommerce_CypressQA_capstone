@@ -33,6 +33,8 @@
     ]
   },
   "AddManufacturer": {
+    "modalTitle": "Import from Excel",
+    "testFile": "manufacturers.xlsx",
     "testData": [
       {"name": "Nissan", "displayOrder": 1},
       {"name": "LV", "displayOrder": 5},

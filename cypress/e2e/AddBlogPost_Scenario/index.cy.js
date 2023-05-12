@@ -53,6 +53,7 @@ describe("Scenario: Add Blog Post", ()=>{
 
         // For each test data, add a new blog post and verify success
         blogPosts_testData.forEach(blogPost=>{
+            
             AddBlogPostPageObject.visit()
             AddBlogPostPageObject.enterTitle(blogPost.title)
             AddBlogPostPageObject.enterBody(blogPost.body)

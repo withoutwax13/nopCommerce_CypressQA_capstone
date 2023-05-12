@@ -47,14 +47,28 @@ class ListBlogPostsPage{
         return this.addButton.click()
     }
 
+    // assert positive modal
     assertSuccessAlert(){
         this.alertMessage.should('contain', 'The new blog post has been added successfully.')
     }
 
+    // assert grid has the value of the title, startDate and startTime of the expected parameter
     assertGridHas(_EXPECTED_BLOG_DETAILS, notDefaultTime=false){
-        this.blogPostGrild.table().should('contain', _EXPECTED_BLOG_DETAILS.title)
+        const  {startDate, startTime, title } = _EXPECTED_BLOG_DETAILS
+        this.blogPostGrild.table().should('contain', title)
         this.blogPostGrild.table()
-            .should('contain', `${_EXPECTED_BLOG_DETAILS.startDate.mm > 9 ? _EXPECTED_BLOG_DETAILS.startDate.mm : `0${_EXPECTED_BLOG_DETAILS.startDate.mm}`}/${_EXPECTED_BLOG_DETAILS.startDate.dd > 9 ? _EXPECTED_BLOG_DETAILS.startDate.dd : `0${_EXPECTED_BLOG_DETAILS.startDate.dd}`}/${_EXPECTED_BLOG_DETAILS.startDate.yyyy} ${notDefaultTime ? `${_EXPECTED_BLOG_DETAILS.startTime.hr > 9 ? _EXPECTED_BLOG_DETAILS.startTime.hr : `0${_EXPECTED_BLOG_DETAILS.startTime.hr}`}:${_EXPECTED_BLOG_DETAILS.startTime.min > 9 ? _EXPECTED_BLOG_DETAILS.startTime.min : `0${_EXPECTED_BLOG_DETAILS.startTime.min}`}:00 ${_EXPECTED_BLOG_DETAILS.startTime.hr > 11 ? `PM` : `AM`}` : `12:00:00 AM`}`)
+            .should('contain', 
+                `${startDate.mm > 9 ?
+                    startDate.mm : 
+                    `0${startDate.mm}`}/${startDate.dd > 9 ?
+                    startDate.dd : 
+                    `0${startDate.dd}`}/${startDate.yyyy} ${notDefaultTime ?
+                    `${startTime.hr > 9 ? 
+                    startTime.hr : 
+                    `0${startTime.hr}`}:${startTime.min > 9 ? 
+                    startTime.min : 
+                    `0${startTime.min}`}:00 ${startTime.hr > 11 ? `PM` : `AM`}` : `12:00:00 AM`}`
+            )
     }
 }
 
